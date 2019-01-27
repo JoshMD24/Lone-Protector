@@ -1,0 +1,28 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class DamageHouse : MonoBehaviour
+{
+    public float Health = 10; //Sets the houses health
+    public float DamageTaken = 10; //Sets the damage the enemy will do to the house
+
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Health -= DamageTaken;
+        }
+        if (Health <= 0)
+        {
+            Die();
+        }
+    }
+   public void Die()
+    {
+        Destroy(gameObject);
+        SceneManager.LoadScene("End Screen");
+    }
+}
